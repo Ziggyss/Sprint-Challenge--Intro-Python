@@ -21,6 +21,8 @@
 class Vehicle():
     pass
 
+# This is the base class
+
 class FlightVehicle(Vehicle):
     pass
 

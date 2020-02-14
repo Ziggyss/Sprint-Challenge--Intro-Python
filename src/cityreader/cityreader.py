@@ -1,6 +1,15 @@
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
+import csv
 
+class City:
+  def __init__(self, name, lat, lon):
+    self.name = name
+    self.lat = lat
+    self.lon = lon
+
+  def __str__(self):
+    return f'{self.name}, {self.lat}, {self.lon}'  
 
 # We have a collection of US cities with population over 750,000 stored in the
 # file "cities.csv". (CSV stands for "comma-separated values".)
@@ -17,6 +26,19 @@
 cities = []
 
 def cityreader(cities=[]):
+  with open('./src/cityreader/cities.csv', 'r') as csvfile:
+    csv_reader = csv.reader(csvfile)
+    line_count = 0
+    for row in csv_reader:
+      if line_count == 0:
+          line_count += 1
+      else:  
+          city = City(row[0], float(row[3]), float(row[4]))
+          cities.append(city)
+          line_count += 1
+  
+
+
   # TODO Implement the functionality to read from the 'cities.csv' file
   # For each city record, create a new City instance and add it to the 
   # `cities` list
@@ -60,9 +82,21 @@ for c in cities:
 
 # TODO Get latitude and longitude values from the user
 
+
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
+  # (lat1, lon1) = input("Enter lat1, lon2").split()
+  # (lat2, lon2) = input("Enter lat2, lon2").split()  
+  # I'm not sure how I was supposed to get the input here but I removed it and the test passed.
+  highest_lat = max(float(lat1),float(lat2))
+  highest_lon = max(float(lon1), float(lon2))
+  lowest_lat = min(float(lat1), float(lat2))
+  lowest_lon = min(float(lon1), float(lon2))
+
+  
+
+
   # within will hold the cities that fall within the specified region
-  within = []
+  within = [city for city in cities if city.lat >= lowest_lat and city.lat <= highest_lat and city.lon >= lowest_lon and city.lon <= highest_lon]
 
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
