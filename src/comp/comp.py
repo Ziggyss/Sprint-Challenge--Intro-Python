@@ -63,7 +63,7 @@ print(f)
 print("All names uppercase:")
 g = [Human(h.name.upper(), + (h.age + 5)) for h in humans]
 print(g)
-# I figured out that I needed Human from looking at the expected test output but I don't fully understand why...
+
 
 # Write a list comprehension that contains the square root of all the ages.
 print("Square root of ages:")

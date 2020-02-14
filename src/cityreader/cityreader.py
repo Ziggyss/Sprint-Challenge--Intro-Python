@@ -84,22 +84,42 @@ for c in cities:
 
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
-  # (lat1, lon1) = input("Enter lat1, lon2").split()
-  # (lat2, lon2) = input("Enter lat2, lon2").split()  
-  # I'm not sure how I was supposed to get the input here but I removed it and the test passed.
-  highest_lat = max(float(lat1),float(lat2))
-  highest_lon = max(float(lon1), float(lon2))
-  lowest_lat = min(float(lat1), float(lat2))
-  lowest_lon = min(float(lon1), float(lon2))
+    # input1 = input("Enter lat1, lon1").split()
+    # input2 = input("Enter lat2, lon2").split() 
 
   
-
+    highest_lat = max(lat1, lat2)
+    highest_lon = max(lon1, lon2)
+    lowest_lat = min(lat1, lat2)
+    lowest_lon = min(lon1, lon2)
 
   # within will hold the cities that fall within the specified region
-  within = [city for city in cities if city.lat >= lowest_lat and city.lat <= highest_lat and city.lon >= lowest_lon and city.lon <= highest_lon]
+    within = [city for city in cities if city.lat >= lowest_lat and city.lat <= highest_lat and city.lon >= lowest_lon and city.lon <= highest_lon]
 
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
 
-  return within
+    return within
+
+
+def get_inputs():
+    input1 = input("Enter lat1, lon1").split()
+    input2 = input("Enter lat2, lon2").split() 
+
+    lat1 = float(input1[0])
+    lat2 = float(input1[1])
+    lon1 = float(input2[0])
+    lon2 = float(input2[1]) 
+
+    results = cityreader_stretch(lat1, lat2, lon1, lon2, cities)
+    output = [f"{city.name}: {city.lat, city.lon}" for city in results]
+
+    print(output)
+
+get_inputs()    
+ 
+
+
+
+  

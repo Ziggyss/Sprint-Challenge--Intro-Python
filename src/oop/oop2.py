@@ -20,10 +20,9 @@ class GroundVehicle():
 # Override the drive() method in Motorcycle so that it returns "BRAAAP!!"
 
 class Motorcycle(GroundVehicle):
-    def __init__(self, num_wheels=2):
-        self.num_wheels = num_wheels
-
-# Come back to this one and check over whether super needs to be added...        
+    def __init__(self):
+        super().__init__(num_wheels=2)
+              
         
 
     def drive(self):
